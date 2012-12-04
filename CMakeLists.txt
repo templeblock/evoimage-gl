@@ -7,6 +7,20 @@ find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
 find_package(PNG REQUIRED)
 
+set(EPICFAILMSG "")
+if(NOT OPENGL_FOUND)
+    set(EPICFAILMSG "${EPICFAILMSG}  OpenGL not found\n")
+endif()
+if(NOT GLUT_FOUND)
+    set(EPICFAILMSG "${EPICFAILMSG}  GLUT not found\n")
+endif()
+if(NOT PNG_FOUND)
+    set(EPICFAILMSG "${EPICFAILMSG}  PNG not found\n")
+endif()
+if(EPICFAILMSG)
+    message(FATAL_ERROR "Evoimage-gl needs the following libraries installed:\n${EPICFAILMSG}")
+endif()
+
 # TODO Set some compiler flags
 
 # Define the core GA engine library
